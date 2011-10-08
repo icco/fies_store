@@ -5,7 +5,7 @@ source :rubygems
 
 # Project requirements
 gem 'rake'
-gem 'rack-flash'
+gem "sinatra-flash", :require => "sinatra/flash"
 
 # Component requirements
 gem 'erubis', "~> 2.7.0"
@@ -16,7 +16,7 @@ gem 'sqlite3'
 
 
 # Padrino
-gem 'padrino', '0.10.2'
+gem 'padrino'
 # Padrino EDGE
 # gem 'padrino', :git => 'git://github.com/padrino/padrino-framework.git'
 #
