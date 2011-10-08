@@ -1,4 +1,4 @@
-class Fiesstore < Padrino::Application
+class FiesStore < Padrino::Application
   register Padrino::Rendering
   register Padrino::Mailer
   register Padrino::Helpers

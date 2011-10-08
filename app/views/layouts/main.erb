@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Fies Store</title>
+    <%= stylesheet_link_tag 'style' %>
+    <%= javascript_include_tag 'jquery', 'application' %>
+    <%= yield_content :include %>
+  </head>
+  <body>
+    <div id="container">
+      <div id="header">
+        <h1>The Fies Store!</h1>
+      </div>
+      <div id="content">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>
