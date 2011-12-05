@@ -24,4 +24,7 @@ A small web app so my friends can manage inventory at Anime cons.
 
 ## References
 
- * <http://diveintohtml5.info/storage.html>
+ * Intro to HTML5 Storage: <http://diveintohtml5.info/storage.html>
+ * Persistance.js: <http://zef.me/2774/persistence-js-an-asynchronous-javascript-orm-for-html5gears>
+ * WebSQL Spec: <http://dev.w3.org/html5/webdatabase/>
+ * IndexDB Spec: <http://dvcs.w3.org/hg/IndexedDB/raw-file/tip/Overview.html>
