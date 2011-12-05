@@ -3,7 +3,7 @@
   <head>
     <title>Fies Store</title>
     <%= stylesheet_link_tag 'style' %>
-    <%= javascript_include_tag 'jquery', 'application' %>
+    <%= javascript_include_tag 'jquery', 'modernizr', 'application' %>
     <%= yield_content :include %>
   </head>
   <body>
@@ -12,6 +12,13 @@
         <h1>The Fies Store!</h1>
       </div>
       <div id="content">
+        <!-- This div is for debugging. -->
+        <div id="test">
+          <ul>
+            <li>Do we support in browser storage?  <span id="storage-test">No</span>.</li>
+          </ul>
+        </div>
+
         <%= yield %>
       </div>
     </div>
