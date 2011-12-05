@@ -7,5 +7,9 @@ $(document).ready(function() {
 
   // Application code!
 
+  // For storage, this is basics:
+  localStorage["bar"] = "foo";
+  console.log(localStorage["bar"]);
+
 
 });

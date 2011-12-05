@@ -21,3 +21,7 @@ A small web app so my friends can manage inventory at Anime cons.
    * overnight or mail order
    * email
    * mailing address
+
+## References
+
+ * <http://diveintohtml5.info/storage.html>
