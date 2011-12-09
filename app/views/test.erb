@@ -1,7 +1,20 @@
 <button id="add-data">Add Data</button>
 
 <script type="text/javascript">
-  $('#add-data').click(function() {
+  $(document).ready(function() {
+    $('#add-data').click(function() {
+      for (i = 0; i < 10; i++) {
+        item = new Item();
+        item.description = "descrip";
+        item.type = "pin";
+        item.creator = "kelly";
+        item.suggested_price = 12.50;
+        item.id = "item_" + localStorage.length;
+        item.save();
+      }
+      console.log(localStorage);
+    });
 
+    console.log(localStorage["items"]);
   });
 </script>
