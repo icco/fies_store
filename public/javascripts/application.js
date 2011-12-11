@@ -27,6 +27,7 @@ $(document).ready(function() {
 
   // Tests!
   if (Modernizr.localstorage) { $('#storage-test').text('Yes'); }
+  if (Modernizr.indexeddb) { $('#db-test').text('Yes'); }
 
   // Application code!
   if (!localStorage["items"]) { localStorage["items"] = []; }
