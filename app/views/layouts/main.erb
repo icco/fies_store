@@ -3,7 +3,7 @@
   <head>
     <title>Fies Store</title>
     <%= stylesheet_link_tag 'style' %>
-    <%= javascript_include_tag 'jquery', 'modernizr', 'application' %>
+    <%= javascript_include_tag 'jquery', 'jquery.dataTables', 'modernizr', 'application' %>
     <%= yield_content :include %>
   </head>
   <body>
@@ -15,8 +15,8 @@
         <!-- This div is for debugging. -->
         <div id="test">
           <ul>
-            <li>Do we support in-browser key/value storage?  <span id="storage-test">No</span>.</li>
-            <li>Do we support in-browser indexedDB storage?  <span id="db-test">No</span>.</li>
+            <li>Do we support in-browser key/value storage? <span id="storage-test">No</span>.</li>
+            <li>Do we support in-browser indexedDB storage? <span id="db-test">No</span>.</li>
           </ul>
         </div>
 
