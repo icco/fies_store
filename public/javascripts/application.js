@@ -15,8 +15,9 @@ function Item() {
   this.init = function() {
     console.log('You instantiated a Class!');
   };
+
   this.save = function() {
-    localStorage[item.id] = this;
+    localStorage[item.id] = JSON.stringify(this);
   };
 }
 
