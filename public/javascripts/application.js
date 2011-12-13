@@ -88,6 +88,7 @@ $(document).ready(function() {
         request.onsuccess = function(ev) {
           console.log("success");
         };
+
         request.onerror = function (ev) {
           console.log(ev);
         };
