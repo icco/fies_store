@@ -21,17 +21,6 @@ function Item() {
   };
 }
 
-var data = [];
-for (i = 0; i < 10; i++) {
-  item = new Item();
-  item.description = "descrip";
-  item.type = "pin";
-  item.creator = "kelly";
-  item.suggested_price = 12.50;
-  item.id = "item_" + localStorage.length;
-  data[i] = item;
-}
-
 function Commission() {
   // TODO(icco): Figure out how Commissions work. What's the workflow?
   this.id = null;
@@ -49,6 +38,18 @@ $(document).ready(function() {
     var str = localStorage[localStorage.key(i)];
     obj = JSON.parse(str);
 
+    var sale_el = null;
+    if (obj.sale_price > 0) {
+      sale_el = obj.sale_price;
+    } else {
+      sale_el = $('<input>', {
+        type: 'text',
+        class: 'sale_price',
+        size: 5,
+        maxlength: 10,
+      });
+    }
+
     $("#items").find('tbody').append(
       $('<tr>').append(
       ).append(
@@ -61,6 +62,8 @@ $(document).ready(function() {
         $('<td>').text(obj.creator)
       ).append(
         $('<td>').text(obj.suggested_price)
+      ).append(
+        $('<td>').append(sale_el)
       )
     );
   }
