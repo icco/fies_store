@@ -45,7 +45,7 @@ $(document).ready(function() {
   if (Modernizr.indexeddb) { $('#db-test').text('Yes'); }
 
   // Application code!
-  for (var i = 0; i < localStorage.length; i++){
+  for (var i = 0; i < localStorage.length; i++) {
     var str = localStorage[localStorage.key(i)];
     obj = JSON.parse(str);
 
@@ -65,5 +65,5 @@ $(document).ready(function() {
     );
   }
 
-  $('#items').dataTable();
+  $('#items').dataTable({ "bPaginate": false });
 });
