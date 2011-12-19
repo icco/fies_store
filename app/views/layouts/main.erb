@@ -2,8 +2,16 @@
 <html>
   <head>
     <title>Fies Store</title>
-    <%= stylesheet_link_tag 'reset', 'style' %>
-    <%= javascript_include_tag 'modernizr', 'jquery', 'naturalSort', 'jquery.dataTables', 'application' %>
+
+    <%= stylesheet_link_tag 'reset', 'jquery-ui-1.8.16.custom.css', 'style' %>
+
+    <%= javascript_include_tag 'modernizr' %>
+    <%= javascript_include_tag 'jquery-1.6.2.min.js' %>
+    <%= javascript_include_tag 'jquery-ui-1.8.16.custom.min.js' %>
+    <%= javascript_include_tag 'naturalSort' %>
+    <%= javascript_include_tag 'jquery.dataTables' %>
+    <%= javascript_include_tag 'application' %>
+
     <%= yield_content :include %>
   </head>
   <body>
