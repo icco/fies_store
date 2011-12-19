@@ -5,6 +5,7 @@ source :rubygems
 
 # Project requirements
 gem 'rake'
+gem "sinatra-synchrony", :require => "sinatra/synchrony"
 gem "sinatra-flash", :require => "sinatra/flash"
 
 # Component requirements
