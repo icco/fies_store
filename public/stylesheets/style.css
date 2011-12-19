@@ -114,3 +114,6 @@ table.pretty tfoot td {
   text-align: center;
 }
 
+.DataTables_sort_icon {
+  float: right;
+}
