@@ -29,6 +29,15 @@ function Commission() {
 // Man document thread. Runs at page load.
 $(document).ready(function() {
 
+  // Natural Sorting support.
+  jQuery.fn.dataTableExt.oSort['natural-asc']  = function(a,b) {
+    return naturalSort(a,b);
+  };
+
+  jQuery.fn.dataTableExt.oSort['natural-desc'] = function(a,b) {
+    return naturalSort(a,b) * -1;
+  };
+
   // Tests!
   if (Modernizr.localstorage) { $('#storage-test').text('Yes'); }
   if (Modernizr.indexeddb) { $('#db-test').text('Yes'); }
@@ -68,5 +77,14 @@ $(document).ready(function() {
     );
   }
 
-  $('#items').dataTable({ "bPaginate": false });
+  $('#items').dataTable({
+    "bPaginate": false,
+    "aoColumns": [
+      null,
+      null,
+      null,
+      { "sType": "natural-asc" },
+      null
+    ]
+  });
 });
