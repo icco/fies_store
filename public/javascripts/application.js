@@ -47,19 +47,6 @@ $(document).ready(function() {
     var str = localStorage[localStorage.key(i)];
     obj = JSON.parse(str);
 
-    var sale_el = null;
-    if (obj.sale_price > 0) {
-      sale_el = obj.sale_price;
-    } else {
-      sale_el = $('<input>', {
-        type: 'text',
-        class: 'sale_price',
-        size: 5,
-        maxlength: 10,
-        value: 0
-      });
-    }
-
     $("#items").find('tbody').append(
       $('<tr>').append(
       ).append(
@@ -73,19 +60,21 @@ $(document).ready(function() {
       ).append(
         $('<td>').text(obj.suggested_price)
       ).append(
-        $('<td>').append(sale_el)
+        $('<td>').append(obj.sale_price)
       )
     );
   }
 
+  // Build data table with no pagination and natural sorting on ID and both prices.
   $('#items').dataTable({
     "bPaginate": false,
     "aoColumns": [
+      { "sType": "natural" },
       null,
       null,
       null,
-      { "sType": "natural-asc" },
-      null
+      { "sType": "natural" },
+      { "sType": "natural" },
     ]
   });
 });
