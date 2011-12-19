@@ -26,6 +26,26 @@ function Commission() {
   this.id = null;
 }
 
+
+// Pull in data from localStorage
+function loadLocalStorageData(datatable) {
+  for (var i = 0; i < localStorage.length; i++) {
+    var str = localStorage[localStorage.key(i)];
+    obj = JSON.parse(str);
+
+    datatable.fnAddData([
+      obj.id,
+      obj.description,
+      obj.type,
+      obj.creator,
+      obj.suggested_price,
+      obj.sale_price,
+    ]);
+
+    console.log("Loaded: " + obj.id);
+  }
+}
+
 // Man document thread. Runs at page load.
 $(document).ready(function() {
 
@@ -44,11 +64,16 @@ $(document).ready(function() {
 
   // Application code!
 
-  // Build data table with no pagination and natural sorting on ID and both prices.
+  // Build data table
   $('#items').dataTable({
-    "bPaginate": false,
-    "bJQueryUI": true,
-    "aoColumns": [
+    "bPaginate": false, // No pagination
+    "bProcessing": true, // Show processing notification
+    "bJQueryUI": true, // Use JQuery UI Themes
+    "fnInitComplete": function() {
+      // Load data from Local Storage
+      loadLocalStorageData(this);
+    },
+    "aoColumns": [ // Specify how to sort columns
       { "sType": "natural" },
       null,
       null,
@@ -56,20 +81,5 @@ $(document).ready(function() {
       { "sType": "natural" },
       { "sType": "natural" },
     ]
-  });
-
-  // Pull in data from localStorage
-  for (var i = 0; i < localStorage.length; i++) {
-    var str = localStorage[localStorage.key(i)];
-    obj = JSON.parse(str);
-
-    $('#items').dataTable().fnAddData( [
-      obj.id,
-      obj.description,
-      obj.type,
-      obj.creator,
-      obj.suggested_price,
-      obj.sale_price,
-    ]);
-  }
+  })._fnReDraw(); // Force redraw
 });
