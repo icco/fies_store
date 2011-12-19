@@ -46,6 +46,12 @@ function loadLocalStorageData(datatable) {
   }
 }
 
+function delRow(el) {
+
+  console.log(el);
+
+}
+
 // Man document thread. Runs at page load.
 $(document).ready(function() {
 
