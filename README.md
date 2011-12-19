@@ -36,3 +36,5 @@ A small web app so my friends can manage inventory at Anime cons.
  * Sell items
  * Add inventory
  * Commissions
+ * Delete Rows
+ * Figure out how to deal with unique keys in local storage.
