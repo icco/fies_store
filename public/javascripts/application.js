@@ -56,6 +56,7 @@ $(document).ready(function() {
         class: 'sale_price',
         size: 5,
         maxlength: 10,
+        value: 0
       });
     }
 
