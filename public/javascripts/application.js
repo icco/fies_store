@@ -43,31 +43,11 @@ $(document).ready(function() {
   if (Modernizr.indexeddb) { $('#db-test').text('Yes'); }
 
   // Application code!
-  for (var i = 0; i < localStorage.length; i++) {
-    var str = localStorage[localStorage.key(i)];
-    obj = JSON.parse(str);
-
-    $("#items").find('tbody').append(
-      $('<tr>').append(
-      ).append(
-        $('<td>').text(obj.id)
-      ).append(
-        $('<td>').text(obj.description)
-      ).append(
-        $('<td>').text(obj.type)
-      ).append(
-        $('<td>').text(obj.creator)
-      ).append(
-        $('<td>').text(obj.suggested_price)
-      ).append(
-        $('<td>').append(obj.sale_price)
-      )
-    );
-  }
 
   // Build data table with no pagination and natural sorting on ID and both prices.
   $('#items').dataTable({
     "bPaginate": false,
+    "bJQueryUI": true,
     "aoColumns": [
       { "sType": "natural" },
       null,
@@ -77,4 +57,19 @@ $(document).ready(function() {
       { "sType": "natural" },
     ]
   });
+
+  // Pull in data from localStorage
+  for (var i = 0; i < localStorage.length; i++) {
+    var str = localStorage[localStorage.key(i)];
+    obj = JSON.parse(str);
+
+    $('#items').dataTable().fnAddData( [
+      obj.id,
+      obj.description,
+      obj.type,
+      obj.creator,
+      obj.suggested_price,
+      obj.sale_price,
+    ]);
+  }
 });
