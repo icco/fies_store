@@ -46,46 +46,59 @@ function loadLocalStorageData(datatable) {
   }
 }
 
-function delRow(el) {
+// Static object for syncing
+document.db = {
+  addRow: function (arr) {
+  },
 
-  console.log(el);
+  delRow: function (el) {
+    console.log(el);
+  },
 
-}
+  updateRow: function (el, arr) {
+  },
+
+  sync: function () {
+  }
+};
+
 
 // Man document thread. Runs at page load.
 $(document).ready(function() {
-
-  // Natural Sorting support.
-  jQuery.fn.dataTableExt.oSort['natural-asc']  = function(a,b) {
-    return naturalSort(a,b);
-  };
-
-  jQuery.fn.dataTableExt.oSort['natural-desc'] = function(a,b) {
-    return naturalSort(a,b) * -1;
-  };
 
   // Tests!
   if (Modernizr.localstorage) { $('#storage-test').text('Yes'); }
   if (Modernizr.indexeddb) { $('#db-test').text('Yes'); }
 
-  // Application code!
+  // Code to run only on pages with item listing.
+  if ($('#items').length) {
 
-  // Build data table
-  $('#items').dataTable({
-    "bPaginate": false, // No pagination
-    "bProcessing": true, // Show processing notification
-    "bJQueryUI": true, // Use JQuery UI Themes
-    "fnInitComplete": function() {
-      // Load data from Local Storage
-      loadLocalStorageData(this);
-    },
-    "aoColumns": [ // Specify how to sort columns
-      { "sType": "natural" },
-      null,
-      null,
-      null,
-      { "sType": "natural" },
-      { "sType": "natural" },
-    ]
-  })._fnReDraw(); // Force redraw
+    // Natural Sorting support.
+    jQuery.fn.dataTableExt.oSort['natural-asc']  = function(a,b) {
+      return naturalSort(a,b);
+    };
+
+    jQuery.fn.dataTableExt.oSort['natural-desc'] = function(a,b) {
+      return naturalSort(a,b) * -1;
+    };
+
+    // Build data table
+    $('#items').dataTable({
+      "bPaginate": false, // No pagination
+      "bProcessing": true, // Show processing notification
+      "bJQueryUI": true, // Use JQuery UI Themes
+      "fnInitComplete": function() {
+        // Load data from Local Storage
+        loadLocalStorageData(this);
+      },
+      "aoColumns": [ // Specify how to sort columns
+        { "sType": "natural" },
+        null,
+        null,
+        null,
+        { "sType": "natural" },
+        { "sType": "natural" },
+      ]
+    })._fnReDraw(); // Force redraw
+  }
 });
