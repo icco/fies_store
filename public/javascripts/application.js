@@ -40,8 +40,8 @@ function loadLocalStorageData(datatable) {
       obj.description,
       obj.type,
       obj.creator,
-      obj.suggested_price,
-      obj.sale_price,
+      '$' + obj.suggested_price.toFixed(2),
+      '$' + obj.sale_price.toFixed(2),
     ]);
 
     console.log("Loaded: " + obj.id);
