@@ -11,6 +11,7 @@ FiesStore.controllers :sync do
   # Dump db to client.
   get :pull do
 
+    content_type 'application/json'
     "PULL"
   end
 end

@@ -31,7 +31,9 @@ function Commission() {
 function loadLocalStorageData(datatable) {
   for (var i = 0; i < localStorage.length; i++) {
     var str = localStorage[localStorage.key(i)];
-    obj = JSON.parse(str);
+
+    // TODO(icco): Add checking to make sure this is a valid key.
+    var obj = JSON.parse(str);
 
     datatable.fnAddData([
       obj.id,
