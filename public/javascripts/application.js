@@ -65,7 +65,7 @@ document.db = {
 };
 
 
-// Man document thread. Runs at page load.
+// Main document thread. Runs at page load.
 $(document).ready(function() {
 
   // Tests!
@@ -102,5 +102,15 @@ $(document).ready(function() {
         { "sType": "natural" },
       ]
     })._fnReDraw(); // Force redraw
+
+    // Makes each field editable.
+    $('td', $('#items').dataTable().fnGetNodes()).editable(function(value, settings) {
+      console.log(this);
+      console.log(value);
+      console.log(settings);
+
+      // We must return what we want to display.
+      return(value);
+    });
   }
 });
