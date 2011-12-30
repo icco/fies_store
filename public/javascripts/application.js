@@ -17,7 +17,7 @@ function Item() {
   };
 
   this.save = function() {
-    localStorage[item.id] = JSON.stringify(this);
+    localStorage[this.id] = JSON.stringify(this);
   };
 }
 
@@ -105,9 +105,16 @@ $(document).ready(function() {
 
     // Makes each field editable.
     $('td', $('#items').dataTable().fnGetNodes()).editable(function(value, settings) {
-      console.log(this);
-      console.log(value);
-      console.log(settings);
+      var id = $(this).parent().children().html();
+
+      var item = new Item();
+      item.id = id;
+      item.description = 'desc';
+      item.type = 'b';
+      item.creator = 'a';
+      item.suggested_price = 0;
+      item.sale_price = 0;
+      item.save();
 
       // We must return what we want to display.
       return(value);
