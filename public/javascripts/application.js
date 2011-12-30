@@ -15,20 +15,10 @@ function Item() {
   this.init = function() {
     console.log('You instantiated a Class!');
   };
-  this.save = function() {
-    localStorage[item.id] = this;
-  };
-}
 
-var data = [];
-for (i = 0; i < 10; i++) {
-  item = new Item();
-  item.description = "descrip";
-  item.type = "pin";
-  item.creator = "kelly";
-  item.suggested_price = 12.50;
-  item.id = "item_" + localStorage.length;
-  data[i] = item;
+  this.save = function() {
+    localStorage[this.id] = JSON.stringify(this);
+  };
 }
 
 function Commission() {
@@ -36,13 +26,98 @@ function Commission() {
   this.id = null;
 }
 
-// Man document thread. Runs at page load.
+
+// Pull in data from localStorage
+function loadLocalStorageData(datatable) {
+  for (var i = 0; i < localStorage.length; i++) {
+    var str = localStorage[localStorage.key(i)];
+
+    // TODO(icco): Add checking to make sure this is a valid key.
+    var obj = JSON.parse(str);
+
+    datatable.fnAddData([
+      obj.id,
+      obj.description,
+      obj.type,
+      obj.creator,
+      '$' + obj.suggested_price.toFixed(2),
+      '$' + obj.sale_price.toFixed(2),
+    ]);
+
+    console.log("Loaded: " + obj.id);
+  }
+}
+
+// Static object for syncing
+document.db = {
+  addRow: function (arr) {
+  },
+
+  delRow: function (el) {
+    console.log(el);
+  },
+
+  updateRow: function (el, arr) {
+  },
+
+  sync: function () {
+  }
+};
+
+
+// Main document thread. Runs at page load.
 $(document).ready(function() {
 
   // Tests!
   if (Modernizr.localstorage) { $('#storage-test').text('Yes'); }
   if (Modernizr.indexeddb) { $('#db-test').text('Yes'); }
 
-  // Application code!
+  // Code to run only on pages with item listing.
+  if ($('#items').length) {
 
+    // Natural Sorting support.
+    jQuery.fn.dataTableExt.oSort['natural-asc']  = function(a,b) {
+      return naturalSort(a,b);
+    };
+
+    jQuery.fn.dataTableExt.oSort['natural-desc'] = function(a,b) {
+      return naturalSort(a,b) * -1;
+    };
+
+    // Build data table
+    $('#items').dataTable({
+      "bPaginate": false, // No pagination
+      "bProcessing": true, // Show processing notification
+      "bJQueryUI": true, // Use JQuery UI Themes
+      "fnInitComplete": function() {
+        // Load data from Local Storage
+        loadLocalStorageData(this);
+      },
+      "aoColumns": [ // Specify how to sort columns
+        { "sType": "natural" },
+        null,
+        null,
+        null,
+        { "sType": "natural" },
+        { "sType": "natural" },
+      ]
+    })._fnReDraw(); // Force redraw
+
+    // Makes each field editable.
+    $('td', $('#items').dataTable().fnGetNodes()).editable(function(value, settings) {
+      var id = $(this).parent().children().html();
+
+      var item = new Item();
+      item.id = id;
+      item.description = 'desc';
+      item.type = 'b';
+      item.creator = 'a';
+      item.suggested_price = 0;
+      item.sale_price = 0;
+      item.save();
+
+      // We must return what we want to display.
+      return(value);
+    });
+  }
 });

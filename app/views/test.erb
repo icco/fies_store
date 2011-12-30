@@ -8,14 +8,13 @@
         item.description = "descrip";
         item.type = "pin";
         item.creator = "kelly";
-        item.suggested_price = 12.50;
+        item.suggested_price = 12.50*Math.random();
         item.id = "item_" + localStorage.length;
         item.save();
       }
+
       console.log(localStorage);
     });
-
-    console.log(localStorage["items"]);
 
     $('#test').show();
   });

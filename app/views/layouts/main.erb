@@ -2,21 +2,30 @@
 <html>
   <head>
     <title>Fies Store</title>
-    <%= stylesheet_link_tag 'style' %>
-    <%= javascript_include_tag 'jquery', 'modernizr', 'application' %>
+
+    <%= stylesheet_link_tag 'reset', 'smoothness/jquery-ui-1.8.16.custom.css', 'style' %>
+
+    <%= javascript_include_tag 'modernizr' %>
+    <%= javascript_include_tag 'jquery-1.6.2.min.js' %>
+    <%= javascript_include_tag 'jquery-ui-1.8.16.custom.min.js' %>
+    <%= javascript_include_tag 'naturalSort' %>
+    <%= javascript_include_tag 'jquery.dataTables' %>
+    <%= javascript_include_tag 'jquery.jeditable' %>
+    <%= javascript_include_tag 'application' %>
+
     <%= yield_content :include %>
   </head>
   <body>
     <div id="container">
       <div id="header">
-        <h1>The Fies Store!</h1>
+        <h1><a href="/">The Fies Store!</a></h1>
       </div>
       <div id="content">
         <!-- This div is for debugging. -->
         <div id="test">
           <ul>
-            <li>Do we support in-browser key/value storage?  <span id="storage-test">No</span>.</li>
-            <li>Do we support in-browser indexedDB storage?  <span id="db-test">No</span>.</li>
+            <li>Do we support in-browser key/value storage? <span id="storage-test">No</span>.</li>
+            <li>Do we support in-browser indexedDB storage? <span id="db-test">No</span>.</li>
           </ul>
         </div>
 
