@@ -7,7 +7,6 @@ FiesStore.controllers :sync do
 
   end
 
-
   # Dump db to client.
   get :pull do
 
